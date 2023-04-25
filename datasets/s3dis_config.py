@@ -1,8 +1,8 @@
 
 base_parameters = dict(
 dataset_name = 's3dis',
-main_2d_path = '/media/sametn/b4f21b0d-5023-431b-8f47-ea9d11dc7606/2D_modalities/',
-main_3d_path = '/home/sametn/Repos/ReDAL/data_preparation/S3DIS_processed/',
+main_2d_path = 'path/to/2D_modalities/',
+main_3d_path = 'path/to/S3DIS_processed/',
 scene_relative_path_to_rgb = '/data/rgb',
 save_path = './s3dis_attribute_outputs/',
 train_scenes = ['Area_1', 'Area_2', 'Area_3', 'Area_4', 'Area_6'],
