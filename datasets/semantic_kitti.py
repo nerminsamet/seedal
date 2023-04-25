@@ -3,9 +3,6 @@ import json
 import pickle
 import numpy as np
 from PIL import Image
-from os import listdir
-from os.path import isfile, join
-from scipy import stats
 from .base_dataset import PCData
 
 
@@ -241,84 +238,6 @@ class SK(PCData):
         f.close()
         fu.close()
 
-    # def extract_scene_attributes(self):
-    #
-    #     ret = self.load_scene_attributes()
-    #     if ret:  # if we managed to load then no need to run again!
-    #         return
-    #
-    #     self.load_cluster_centers()
-    #     self.load_sparsified_dataset()
-    #     scene_attributes = {}
-    #     for scene in self.sparsified_dataset:
-    #         kk = scene.replace('/','_')[:-4]
-    #         xbb = self.cluster_centers.get(kk, None)
-    #
-    #         if xbb is not None:
-    #             xbb = self.cluster_centers[kk]
-    #             curr_dim = len(xbb)
-    #             ordered_D = self.sim_object.calculate_dino_aff_matrix_from_feats(xbb)
-    #             final_distance_list = list(ordered_D[np.triu_indices(curr_dim, 1)])
-    #
-    #             d = {}
-    #             d[f"{kk}"] = {}
-    #             d[f"{kk}"]['mean']  = stats.describe(final_distance_list).mean
-    #             d[f"{kk}"]['variance']  = stats.describe(final_distance_list).variance
-    #             d[f"{kk}"]['minmax'] = stats.describe(final_distance_list).minmax
-    #             scene_attributes.update(d)
-    #
-    #     self.scene_attributes = scene_attributes
-    #     f = open(self.scene_attributes_file, "wb")
-    #     pickle.dump(self.scene_attributes, f)
-    #     f.close()
-    #     print(f'Len of final rooms {len(self.scene_attributes)}')
-
-    # def extract_pairwise_scene_attributes(self):
-    #
-    #     ret = self.load_pairwise_scene_attributes()
-    #     if ret:  # if we managed to load then no need to run again!
-    #         return
-    #
-    #     self.load_cluster_centers()
-    #     self.load_sparsified_dataset()
-    #     total_scene_number = len(self.sparsified_dataset)
-    #     pairwise_scene_attributes = {}
-    #
-    #     for ind, scn1 in enumerate(self.sparsified_dataset):
-    #         s1 = scn1.replace('/', '_')[:-4]
-    #         for st in range(ind + 1, total_scene_number):
-    #             s2 = self.sparsified_dataset[st].replace('/', '_')[:-4]
-    #             kk = f'{s1}*{s2}'
-    #
-    #             cluster_centers_s1 = self.cluster_centers[s1]
-    #             cluster_centers_s2 = self.cluster_centers[s2]
-    #
-    #             curr_dim = len(cluster_centers_s1) + len(cluster_centers_s2)
-    #             xbb = np.zeros((curr_dim, cluster_centers_s1.shape[1]), dtype=np.float32)
-    #             for ii, v in enumerate(cluster_centers_s1):
-    #                 xbb[ii] = v
-    #             for ii, v in enumerate(cluster_centers_s2):
-    #                 xbb[len(cluster_centers_s1) + ii] = v
-    #
-    #             ordered_D = self.sim_object.calculate_dino_aff_matrix_from_feats(xbb)
-    #
-    #             final_distance_list = list(
-    #                 ordered_D[len(cluster_centers_s1):, 0: len(cluster_centers_s2)].flatten())
-    #
-    #             d = {}
-    #             d[f"{kk}"] = {}
-    #             d[f"{kk}"]['mean'] = stats.describe(final_distance_list).mean
-    #             d[f"{kk}"]['variance'] = stats.describe(final_distance_list).variance
-    #             d[f"{kk}"]['minmax'] = stats.describe(final_distance_list).minmax
-    #             pairwise_scene_attributes.update(d)
-    #
-    #     self.pairwise_scene_attributes = pairwise_scene_attributes
-    #     # create a binary pickle file
-    #     f = open(self.pairwise_scene_attributes_file, "wb")
-    #     pickle.dump(self.pairwise_scene_attributes, f)
-    #     f.close()
-
-
     def get_scenes(self):
 
         sparsified_dataset =  self.sparsified_dataset
@@ -329,36 +248,6 @@ class SK(PCData):
 
         return sparsified_dataset, sparsified_dataset_keys
 
-    # def prepare_data_for_optimization(self):
-    #
-    #     self.load_scene_attributes()
-    #     self.load_data_stats()
-    #     self.load_pairwise_scene_attributes()
-    #     self.load_sparsified_dataset()
-    #
-    #     total_scene_number = len(self.sparsified_dataset)
-    #
-    #     pair_scores = []
-    #     all_pairs = []
-    #     for i, scene_i in enumerate(self.sparsified_dataset):
-    #         for j in range(i + 1, total_scene_number):
-    #
-    #             scene_j = all_scene_keys[j]
-    #             dsim_i = 1 - self.scene_attributes[scene_i]['mean']
-    #             dsim_j = 1 - self.scene_attributes[scene_j]['mean']
-    #
-    #             dsim = dsim_i * dsim_j
-    #
-    #             kk = f'{scene_i}*{scene_j}'
-    #
-    #             pairwise_sim = self.pairwise_scene_attributes[kk]['mean']
-    #             pairwise_dsim = 1 - pairwise_sim
-    #             final_score = pairwise_dsim * dsim
-    #
-    #             pair_scores.append(final_score)
-    #             all_pairs.append((scene_i, scene_j))
-    #
-    #     return all_pairs, self.data_stats, pair_scores, self.reduction_size, self.target_point_num
 
 
 
