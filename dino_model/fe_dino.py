@@ -11,7 +11,7 @@ device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
 
 
 class DinoModel(nn.Module):
-    def __init__(self):
+    def __init__(self, feat_type):
         super(DinoModel, self).__init__()
 
         self.transform = pth_transforms.Compose([
@@ -22,6 +22,7 @@ class DinoModel(nn.Module):
             ])
 
         self.model = self.load_model()
+        self.feat_type = feat_type
 
 
     def load_model(self):
@@ -40,10 +41,10 @@ class DinoModel(nn.Module):
             images = self.transform(images).unsqueeze(0)
         with torch.no_grad():
 
-            if feat_type == 'cls':
+            if self.feat_type == 'cls':
                 features = self.model(images.to(device))
 
-            elif feat_type == 'patch':
+            elif self.feat_type == 'patch':
 
                 feat_out = {}
 

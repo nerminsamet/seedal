@@ -5,8 +5,9 @@ import faiss
 
 
 class SimilarityModel:
-    def __init__(self, sim_model_name='dino'):
+    def __init__(self, sim_model_name='dino', feat_type='cls'):
         self.sim_model_name = sim_model_name
+        self.feat_type = feat_type
         self.load_sim_model()
         self.d = None
 
@@ -29,8 +30,12 @@ class SimilarityModel:
 
     def load_sim_model_dino(self):
         # Build models
-        sim_model = DinoModel()  # eval mode (batch norm uses moving mean/variance)
+        sim_model = DinoModel(self.feat_type)  # eval mode (batch norm uses moving mean/variance)
         return sim_model
+
+    def set_sim_model_feat_type_dino(self, feat_type):
+        self.feat_type = feat_type
+        self.sim_model.feat_type = self.feat_type
 
     def load_image(self, image_path_or_data):
         try:
