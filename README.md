@@ -4,8 +4,8 @@ Official PyTorch implementation of SeedAL.
 
 > [**You Never Get a Second Chance To Make a Good First Impression:
 Seeding Active Learning for 3D Semantic Segmentation**](http://arxiv.org/abs/2304.11762),            
-> [Nermin Samet](https://nerminsamet.github.io/), [Oriane Siméoni](https://osimeoni.github.io/), [Gilles Puy](https://sites.google.com/site/puygilles/), [Georgy Ponimatkin](https://ponimatkin.github.io/), [Renaud Marlet](http://imagine.enpc.fr/~marletr/), [Vincent Lepetit](https://vincentlepetit.github.io/)
-> ICCV 2023
+> [Nermin Samet](https://nerminsamet.github.io/), [Oriane Siméoni](https://osimeoni.github.io/), [Gilles Puy](https://sites.google.com/site/puygilles/), [Georgy Ponimatkin](https://ponimatkin.github.io/), [Renaud Marlet](http://imagine.enpc.fr/~marletr/), [Vincent Lepetit](https://vincentlepetit.github.io/),
+> *ICCV 2023*
 
 ## Summary
 Active learning seeds (initial sets) have 
