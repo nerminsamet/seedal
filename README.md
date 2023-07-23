@@ -71,7 +71,7 @@ SeedAL is released under the [Apache 2.0 License](LICENSE).
 If you find SeedAL useful for your research, please cite our paper as follows.
 
 > Nermin Samet, Oriane Siméoni, Gilles Puy, Georgy Ponimatkin, Renaud Marlet, Vincent Lepetit, "You Never Get a Second Chance To Make a Good First Impression: Seeding Active Learning for 3D Semantic Segmentation",
-> arXiv, 2023.
+> In IEEE International Conference on Computer Vision (ICCV), 2023.
 
 
 BibTeX entry:
@@ -79,7 +79,7 @@ BibTeX entry:
 @inproceedings{seedal,
   author = {Nermin Samet, Oriane Siméoni, Gilles Puy, Georgy Ponimatkin, Renaud Marlet and Vincent Lepetit},
   title = {You Never Get a Second Chance To Make a Good First Impression: Seeding Active Learning for 3D Semantic Segmentation},
-  booktitle = {arXiv},
+  booktitle = {IEEE International Conference on Computer Vision (ICCV)},
   year = {2023},
 }
 ```
